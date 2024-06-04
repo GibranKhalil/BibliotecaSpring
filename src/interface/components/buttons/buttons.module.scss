@@ -1,0 +1,15 @@
+.simpleButton {
+    background-color: #75BB48;
+    font-weight: 400;
+    color: #fff;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 12px;
+    max-width: 150px;
+
+    &:hover {
+        filter: brightness(0.95);
+    }
+}

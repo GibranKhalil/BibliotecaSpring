@@ -1,0 +1,40 @@
+.sidebar {
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+    height: auto;
+
+    >ul {
+        padding: 32px 16px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__option {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+        font-size: 12px;
+        background-color: #fff;
+        border-radius: 8px;
+        color: #62636C;
+
+        >i {
+            transform: scale(0.9);
+        }
+
+        &:hover {
+            background-color: #F6FBF3;
+        }
+
+        &--selected {
+            background-color: #E4FADA !important;
+            font-weight: 500;
+            color: #77BC1F;
+        }
+    }
+}
