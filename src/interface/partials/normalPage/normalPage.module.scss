@@ -1,18 +1,14 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
+    width: 100vw;
 
     &__content {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: start;
-        height: 100%;
+        display: flex;
 
         >main {
             padding: 24px;
-            transition: 0.3s;
-            background-color: #fff;
-            height: 100%;
+            overflow: hidden;
         }
     }
 }

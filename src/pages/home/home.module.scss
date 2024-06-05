@@ -1,10 +1,22 @@
 .main {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     gap: 20px;
-    align-items: center;
-}
 
-.map {
-    background-color: #F6FBF3;
-    width: 30%;
+    &__header {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__normalCarrousel {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        >h2 {
+            font-weight: 500;
+        }
+    }
+
 }

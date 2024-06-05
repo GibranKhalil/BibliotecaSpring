@@ -67,10 +67,38 @@ export const BookBannerCarrousel = ({ items }: BookCarrouselProps) => {
     )
 }
 
-export const NormalBookCarrousel = ({ }) => {
-    return (
-        <article>
+export const NormalBookCarrousel = ({ items }: BookCarrouselProps) => {
+    const carrousel = useRef<HTMLDivElement | null>(null)
 
+
+    function handleNext() {
+        if (carrousel.current) {
+            carrousel.current.scrollLeft += carrousel.current.offsetWidth
+        }
+    }
+
+    function handlePrev() {
+        if (carrousel.current) {
+            carrousel.current.scrollLeft -= carrousel.current.offsetWidth
+        }
+    }
+
+    return (
+        <article className={styles.normalCarrousel}>
+            <div ref={carrousel}>
+                {items.map((item, index) => (
+                    <img key={index} src={item.urlImg} alt="Livro 1 do carrousel" />
+                ))}
+            </div>
+            {items.length >= 5 &&
+                <>
+                    <button className={styles['carrousel__container__rightBtn']} onClick={() => handleNext()}>
+                        <ArrowRight />
+                    </button>
+                    <button className={styles['carrousel__container__leftBtn']} onClick={() => handlePrev()}>
+                        <ArrowLeft />
+                    </button>
+                </>}
         </article>
     )
 }

@@ -1,6 +1,6 @@
-
-import { BookBannerCarrousel, CarrouselItems } from '@/interface/components/bookCarrousel'
+import { BookBannerCarrousel, CarrouselItems, NormalBookCarrousel } from '@/interface/components/bookCarrousel'
 import styles from './home.module.scss'
+import { GenericCard } from '@/interface/components/genericCard'
 
 const imgArray: CarrouselItems[] = [
     {
@@ -28,10 +28,16 @@ const imgArray: CarrouselItems[] = [
 export const HomePage = () => {
     return (
         <main className={styles.main}>
-            <BookBannerCarrousel items={imgArray} />
-            <article>
+            <section className={styles['main__header']}>
+                <BookBannerCarrousel items={imgArray} />
+                <GenericCard title='Livros salvos' redirectRoute='/rout'>
 
-            </article>
+                </GenericCard>
+            </section>
+            <section className={styles['main__normalCarrousel']}>
+                <h2>Baseado nos livros que você leu</h2>
+                <NormalBookCarrousel items={imgArray} />
+            </section>
         </main>
     )
 }

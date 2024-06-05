@@ -4,6 +4,7 @@
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 0px 2px 1px #efefef;
     gap: 24px;
     width: 60%;
 
@@ -106,5 +107,57 @@
 
     100% {
         transform: translateX(0);
+    }
+}
+
+.normalCarrousel {
+    position: relative;
+    width: 100%;
+
+    >div {
+        display: flex;
+        gap: 10px;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        >img {
+            height: 350px;
+            width: 250px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                transform: scale(1.02);
+            }
+        }
+    }
+
+    >button {
+        background-color: #f2f2f2;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        border-radius: 50%;
+        padding: 8px;
+        top: 50%;
+        position: absolute;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.98);
+        }
+    }
+
+    &__rightBtn {
+        right: 0%;
+    }
+
+    &__leftBtn {
+        left: 0%;
     }
 }
