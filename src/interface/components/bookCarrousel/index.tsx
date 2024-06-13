@@ -4,18 +4,11 @@ import { useEffect, useRef, useState } from "react"
 import styles from './carrousel.module.scss'
 import { limitText } from "@/data/utils"
 import classNames from "classnames"
+import { BookGet } from "@/data/services/livroService"
+import { useNavigate } from "react-router-dom"
 
-export type CarrouselItems = {
-    title: string
-    description: string
-    urlImg: string
-}
 
-interface BookCarrouselProps {
-    items: CarrouselItems[]
-}
-
-export const BookBannerCarrousel = ({ items }: BookCarrouselProps) => {
+export const BookBannerCarrousel = ({ books }: { books: BookGet[] }) => {
     const carrousel = useRef<HTMLDivElement | null>(null)
     const [itemIndex, setItemIndex] = useState<number>(0)
     const [animated, setAnimated] = useState<boolean>(false)
@@ -27,7 +20,7 @@ export const BookBannerCarrousel = ({ items }: BookCarrouselProps) => {
 
     const handleNext = () => {
         setAnimated(false)
-        setItemIndex((prevState) => Math.min(prevState + 1, items.length - 1))
+        setItemIndex((prevState) => Math.min(prevState + 1, books.length - 1))
     }
 
     const handlePrev = () => {
@@ -38,23 +31,23 @@ export const BookBannerCarrousel = ({ items }: BookCarrouselProps) => {
         <article className={styles.carrousel}>
             <div className={styles['carrousel__text']}>
                 <div>
-                    <h2>{items[itemIndex].title}</h2>
+                    <h2>{books[itemIndex].titulo}</h2>
                     <p>
-                        {limitText(items[itemIndex].description, 300)}
+                        {limitText(books[itemIndex].resumo, 300)}
                     </p>
                 </div>
                 <Button>Continue Lendo</Button>
             </div>
             <div className={styles['carrousel__container']}>
                 <div ref={carrousel} className={styles['carrousel__content']}>
-                    <img className={classNames({ [styles.animated]: animated })} src={items[itemIndex].urlImg} alt={`Imagem ${itemIndex} do carrousel`} />
+                    <img className={classNames({ [styles.animated]: animated })} src={books[itemIndex].urlCapa} alt={`Imagem ${itemIndex} do carrousel`} />
                     <div>
-                        {Array.from(items).map((_, idx) => (
-                            <div className={classNames({ [styles['carrousel__content__dotsSelected']]: idx === itemIndex })} onClick={() => setItemIndex(idx)}></div>
+                        {Array.from(books).map((_, idx) => (
+                            <div key={idx} className={classNames({ [styles['carrousel__content__dotsSelected']]: idx === itemIndex })} onClick={() => setItemIndex(idx)}></div>
                         ))}
                     </div>
                 </div>
-                {itemIndex != items.length - 1 &&
+                {itemIndex != books.length - 1 &&
                     <button className={styles['carrousel__container__rightBtn']} onClick={() => handleNext()}>
                         <ArrowRight />
                     </button>}
@@ -67,7 +60,7 @@ export const BookBannerCarrousel = ({ items }: BookCarrouselProps) => {
     )
 }
 
-export const NormalBookCarrousel = ({ items }: BookCarrouselProps) => {
+export const NormalBookCarrousel = ({ books }: { books: BookGet[] }) => {
     const carrousel = useRef<HTMLDivElement | null>(null)
 
 
@@ -83,14 +76,27 @@ export const NormalBookCarrousel = ({ items }: BookCarrouselProps) => {
         }
     }
 
+    const navigateTo = useNavigate();
+
     return (
         <article className={styles.normalCarrousel}>
             <div ref={carrousel}>
-                {items.map((item, index) => (
-                    <img key={index} src={item.urlImg} alt="Livro 1 do carrousel" />
+                {books.map((item, index) => ( //titulo=SomeTitle&autor=SomeAuthor
+                    <img src={item.urlCapa} alt={`Capa do livro: ${item.titulo}`} key={index} onClick={() => navigateTo('/readbook',
+                        {
+                            state: {
+                                title: item.titulo,
+                                author: item.autor,
+                                img: item.urlCapa,
+                                gen: item.genero,
+                                desc: item.resumo,
+                                pages: item.qtdPagina
+                            }
+                        }
+                    )} />
                 ))}
             </div>
-            {items.length >= 5 &&
+            {books.length >= 5 &&
                 <>
                     <button className={styles['carrousel__container__rightBtn']} onClick={() => handleNext()}>
                         <ArrowRight />

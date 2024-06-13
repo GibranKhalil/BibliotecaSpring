@@ -5,9 +5,9 @@ interface ButtonProps extends ComponentProps<'button'> {
 
 }
 
-export const Button = ({ children, className }: ButtonProps) => {
+export const Button = ({ children, className, type = "submit", onClick }: ButtonProps) => {
     return (
-        <button className={`${className} ${styles.simpleButton}`}>
+        <button onClick={onClick} type={type} className={`${className} ${styles.simpleButton}`}>
             {children}
         </button>
     )

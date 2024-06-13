@@ -1,5 +1,65 @@
 .main {
     display: flex;
-    flex-direction: column;
+    gap: 48px;
     width: 100%;
+
+    &__bookCases {
+        width: 70%;
+        max-width: 70%;
+    }
+
+    &__rightContent {
+        width: 30%;
+        flex: 1;
+    }
+
+    &__newBookCase {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        >fieldSet {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            >label {
+                font-size: 12px;
+                font-weight: 500;
+                color: #3d3d3d;
+            }
+
+            >input,
+            >textarea {
+                padding: 8px 12px;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                outline: none;
+                transition: 0.3s;
+                background-color: transparent;
+                max-width: 280px;
+                min-width: 280px;
+
+                &:focus {
+                    border-color: #75BB48;
+                }
+
+                &:valid {
+                    border-color: #75BB48;
+                    background-color: #f8fff4;
+                }
+            }
+
+            >textarea {
+                min-height: 64px;
+            }
+        }
+
+        >div {
+            display: flex;
+            justify-content: right;
+        }
+
+    }
 }

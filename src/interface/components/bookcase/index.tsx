@@ -1,24 +1,31 @@
 import { ComponentProps, useState } from 'react'
 import styles from './bookcase.module.scss'
-import { CarrouselItems, NormalBookCarrousel } from '../bookCarrousel'
+import { NormalBookCarrousel } from '../bookCarrousel'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import classNames from 'classnames'
+import { BookGet } from '@/data/services/livroService'
+import { limitText } from '@/data/utils'
 
 interface BookCaseProps extends ComponentProps<"article"> {
+    bookCaseId: number
     title: string
-    bookCaseItems: CarrouselItems[]
+    bookCaseItems: BookGet[]
+    description: string
 }
 
-export const BookCase = ({ title, bookCaseItems }: BookCaseProps) => {
+export const BookCase = ({ title, bookCaseItems, bookCaseId, description }: BookCaseProps) => {
     const [isExpanded, setExpanded] = useState<boolean>(false)
     return (
         <article className={classNames(styles.bookcase, { [styles.expanded]: isExpanded })}>
             <header>
-                <h2>{title}</h2>
+                <div>
+                    <h2>{title}</h2>
+                    <small>{limitText(description, 100)}</small>
+                </div>
                 <i onClick={() => setExpanded(!isExpanded)}>{isExpanded ? <ChevronUp /> : <ChevronDown />}</i>
             </header>
             {isExpanded &&
-                <NormalBookCarrousel items={bookCaseItems} />}
+                <NormalBookCarrousel books={bookCaseItems} />}
         </article>
     )
 }

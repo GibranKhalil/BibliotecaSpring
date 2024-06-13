@@ -13,3 +13,32 @@ body{
   height: auto;
   overflow-x: hidden;
 }
+
+/* Estiliza a barra de rolagem */
+::-webkit-scrollbar {
+  width: 10px;
+  /* Largura da barra de rolagem */
+}
+
+/* Estiliza o botão de rolagem (ponteiro) */
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  /* Cor da barra de rolagem */
+  border-radius: 8px;
+  /* Borda arredondada */
+}
+
+/* Estiliza a área da barra de rolagem não coberta pelo botão de rolagem */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  /* Cor da área da barra de rolagem não coberta */
+}
+
+.button--ghost{
+  background-color: transparent !important;
+  color: #75BB48 !important;
+
+  &:hover{
+    background-color: #fafafa !important;
+  }
+}

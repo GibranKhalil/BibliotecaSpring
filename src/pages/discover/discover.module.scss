@@ -9,7 +9,7 @@
         margin-bottom: 24px;
     }
 
-    >div {
+    >form {
         display: flex;
         align-items: center;
         width: 100%;
@@ -19,6 +19,58 @@
             flex: 0.1;
         }
     }
+
+    &__catalog {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        gap: 12px;
+
+        >article {
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+
+            >img {
+                width: 250px;
+                aspect-ratio: 2/3;
+                cursor: pointer;
+                transition: 0.3s;
+
+
+
+                &:hover {
+                    transform: scale(1.1);
+                    filter: brightness(0.7);
+                }
+            }
+
+            >p {
+                display: none;
+                position: absolute;
+                bottom: 5%;
+                left: 5%;
+                color: #fff;
+                text-decoration: underline;
+                font-weight: 600;
+                animation: up 0.5s;
+            }
+
+            &:hover {
+                >p {
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+
+@keyframes up {
+    0% {
+        transform: translateY(50%);
+    }
+
+    100% {}
 }
 
 .input {
