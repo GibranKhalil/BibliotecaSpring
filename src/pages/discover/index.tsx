@@ -29,7 +29,7 @@ export const DiscoverPage = () => {
 
 
     if (isLoading) {
-        return <LoadingDots />;
+        return <main className={styles.loadingContainer}><LoadingDots /></main>;
     }
 
     return (
@@ -44,8 +44,8 @@ export const DiscoverPage = () => {
             </form>
             {data && !isLoading &&
                 <section className={styles['main__catalog']}>
-                    {transformBookSearchToBookGet(data.filter(book => book.imagem && book.imagem.smallThumbnail && book.genero)).map(book => (
-                        <article onClick={() =>
+                    {transformBookSearchToBookGet(data.filter(book => book.imagem && book.imagem.smallThumbnail && book.genero)).map((book, index) => (
+                        <article key={index} onClick={() =>
                             navigateTo('/readbook',
                                 {
                                     state: {
@@ -54,7 +54,8 @@ export const DiscoverPage = () => {
                                         img: book.urlCapa,
                                         gen: book.genero,
                                         desc: book.resumo,
-                                        pages: book.qtdPagina
+                                        pages: book.qtdPagina,
+                                        id: ""
                                     }
                                 }
                             )

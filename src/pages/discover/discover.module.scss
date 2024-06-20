@@ -97,3 +97,12 @@
         }
     }
 }
+
+.loadingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 100vw;
+    min-height: 50vh;
+}

@@ -90,7 +90,8 @@ export const NormalBookCarrousel = ({ books }: { books: BookGet[] }) => {
                                 img: item.urlCapa,
                                 gen: item.genero,
                                 desc: item.resumo,
-                                pages: item.qtdPagina
+                                pages: item.qtdPagina,
+                                id: item.id
                             }
                         }
                     )} />

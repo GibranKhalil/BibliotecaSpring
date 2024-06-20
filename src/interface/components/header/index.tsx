@@ -8,10 +8,10 @@ export const Header = () => {
                 <img src={springLogo} alt='Logo do spring' />
                 <article className={styles['header__avatar']}>
                     <div>
-                        <p>Gibran Khalil</p>
-                        <small>17 livros</small>
+                        <p>Aluno @IFSP</p>
+                        <small>0 Livros</small>
                     </div>
-                    <img src='https://github.com/gibranKhalil.png' />
+                    <img src='https://github.com/talesviana.png' />
                 </article>
             </nav>
         </header>

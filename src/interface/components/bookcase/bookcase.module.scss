@@ -15,7 +15,7 @@
         justify-content: space-between;
 
 
-        >div {
+        >div:first-child {
             display: flex;
             flex-direction: column;
 
@@ -26,6 +26,27 @@
 
             >small {
                 font-size: 12px;
+            }
+        }
+
+        >div:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+
+            >i {
+                transform: scale(0.8);
+                cursor: pointer;
+                transition: 0.3s;
+
+                &:first-child {
+                    color: red;
+                }
+
+                &:hover {
+                    transform: scale(0.9);
+                }
             }
         }
 
@@ -42,6 +63,11 @@
                 animation: common 0.8s ease;
             }
         }
+    }
+
+    >span {
+        color: #bdca03;
+
     }
 }
 

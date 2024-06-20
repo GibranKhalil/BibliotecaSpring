@@ -18,7 +18,7 @@ export interface BookSearch {
 }
 
 export interface BookGet{
-    ID: number,
+    id: number,
     autor: string
     urlCapa: string
     genero: string
@@ -49,9 +49,19 @@ export class LivroService{
         }
     }
 
-    async postBook(book: Omit<BookGet, "ID">){
+    async postBook(book: Omit<BookGet, "id">){
         try{
             const response = (await mainRoute.post(`/books`, book))
+            return response.data
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
+
+    async addBookToBookCase(bookId: number, bookCaseId: number){
+        try{
+            const response = await mainRoute.patch(`/addtobookcase?bookid=${bookId}&bookcaseid=${bookCaseId}`)
             return response.data
         }
         catch(error){

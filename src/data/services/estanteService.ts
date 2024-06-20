@@ -1,7 +1,8 @@
 import mainRoute from "../config/API_CONFIG";
+import { BookGet } from "./livroService";
 
 interface BookCase{
-    ID: number,
+    id: number,
     nome: string,
     descricao: string
 }
@@ -17,7 +18,7 @@ class EstanteService{
         }
     }
 
-    async postBookCase(bookCase: Omit<BookCase, "ID">){
+    async postBookCase(bookCase: Omit<BookCase, "id">){
         try{
             const response = await mainRoute.post("/bookcase", bookCase)
             return response.status
@@ -31,6 +32,16 @@ class EstanteService{
         try{
             const response = await mainRoute.delete(`/bookcase/${ID}`)
             return response.status
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
+
+    async getBooks(ID: number){
+        try{
+            const response = await mainRoute.get(`/bookcasebooks/${ID}`)
+            return response.data as BookGet[]
         }
         catch(error){
             console.error(error)
